@@ -264,7 +264,6 @@ st.markdown("""
 
 
 # --- CUSTOM HEADER ---
-# Using st.markdown for HTML structure allows more control over layout with CSS
 st.markdown(
     """
     <div class="app-header">
@@ -283,9 +282,8 @@ st.markdown(
 
 
 # --- HERO SECTION ---
-# Added a wrapper container for better top padding after custom header
 with st.container():
-    st.markdown("<div class='hero-section-container'>", unsafe_allow_html=True) # Wrapper for padding
+    st.markdown("<div class='hero-section-container'>", unsafe_allow_html=True)
     left_column, right_column = st.columns((2, 1.2))
     with left_column:
         st.markdown("<div class='hero-text'>", unsafe_allow_html=True)
@@ -309,12 +307,12 @@ with st.container():
     with right_column:
         if lottie_coder:
             st_lottie(lottie_coder, height=450, quality="high", key="coder_animation_hero")
-    st.markdown("</div>", unsafe_allow_html=True) # Close hero-section-container
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # --- ABOUT ME ---
-st.markdown("---") # Visual separator, can be removed if sections have enough space
-with st.container(): # Use a section container for consistent padding
+st.markdown("---")
+with st.container():
     st.markdown("<div id='about-me-section' class='section-container'>", unsafe_allow_html=True)
     st.markdown("<h2 class='stSubheader'>About Me 🚀</h2>", unsafe_allow_html=True)
     
@@ -339,7 +337,6 @@ with st.container(): # Use a section container for consistent padding
             """, unsafe_allow_html=True
         )
     with col2:
-        # This part can remain standard text or also be animated if desired
         st.markdown(
             """
             <div style="padding-left: 1rem; margin-top: 1.5rem;">
@@ -359,7 +356,7 @@ with st.container(): # Use a section container for consistent padding
         )
         if lottie_hello:
             st_lottie(lottie_hello, height=150, quality="medium", key="hello_animation_about")
-    st.markdown("</div>", unsafe_allow_html=True) # Close about-me-section
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # --- SKILLS ---
 st.markdown("---")
@@ -381,7 +378,7 @@ with st.container():
             with cols[i % num_skill_cols]:
                 st.markdown(f"<div class='skill-item-wrapper'><div class='skill-item'>{skill}</div></div>", unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True) # Close skills section
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # --- PROJECTS ---
@@ -417,14 +414,16 @@ with st.container():
     for i, project in enumerate(projects_data):
         with project_cols[i % num_project_columns]:
             st.markdown(f"<div class='project-card'>", unsafe_allow_html=True)
-            if project.get("image"): st.image(project["image"], use_column_width=True)
+            # --- THIS IS THE CORRECTED LINE ---
+            if project.get("image"): st.image(project["image"], use_container_width=True)
+            # --- END OF CORRECTION ---
             st.markdown(f"<h3>{project['title']}</h3>", unsafe_allow_html=True)
             st.write(project['description'])
             tech_stack_html = "".join([f"<span>{tech}</span>" for tech in project['tech']])
             st.markdown(f"<div class='tech-stack' style='margin-top:10px; margin-bottom:15px;'>{tech_stack_html}</div>", unsafe_allow_html=True)
             if project.get("link"): st.link_button("View Project 🔗", project["link"], type="primary", use_container_width=True)
             st.markdown("</div>", unsafe_allow_html=True)
-    st.markdown("</div>", unsafe_allow_html=True) # Close projects section
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # --- EXPERIENCE ---
@@ -451,7 +450,7 @@ with st.container():
             <li>Collaborated in an Agile team to deliver bi-weekly software increments.</li>
         </ul>""", unsafe_allow_html=True
     )
-    st.markdown("</div>", unsafe_allow_html=True) # Close experience section
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # --- CONTACT ---
@@ -490,7 +489,7 @@ with st.container():
     with contact_right:
         if lottie_contact:
             st_lottie(lottie_contact, height=400, quality="high", key="contact_animation_form")
-    st.markdown("</div>", unsafe_allow_html=True) # Close contact-me section
+    st.markdown("</div>", unsafe_allow_html=True)
 
 
 # --- CUSTOM FOOTER ---
