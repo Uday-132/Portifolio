@@ -1,0 +1,4 @@
+streamlit
+streamlit-lottie
+requests # To fetch Lottie files from URL
+Pillow # If you plan to use local images
